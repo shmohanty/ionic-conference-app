@@ -4,7 +4,7 @@ trigger:
 
 variables:
   vmImageName: 'windows-latest'
-  projectName: 'ionic-conference-app'
+  
 
 parameters:
   - name: keystoreFileName
@@ -25,7 +25,7 @@ steps:
 
   - task: Npm@1
     inputs:
-      workingDir: '$(Build.SourcesDirectory)/$(projectName)'
+      workingDir: '$(Build.SourcesDirectory)'
       command: install
     displayName: 'NPM Install'
 
@@ -34,31 +34,31 @@ steps:
       npx cap sync
       cd android
       ./gradlew assemble$(buildConfiguration)
-    workingDirectory: $(Build.SourcesDirectory)/$(projectName)
+    workingDirectory: $(Build.SourcesDirectory)
     displayName: 'Build Android Project'
 
   - task: AndroidSigning@3
     inputs:
-      apkFiles: '$(Build.SourcesDirectory)/$(projectName)/android/app/build/outputs/apk/$(buildConfiguration)/*.apk'
+      apkFiles: '$(Build.SourcesDirectory)/android/app/build/outputs/apk/$(buildConfiguration)/*.apk'
       apksign: true
       apksignerKeystoreFile: '${{ parameters.keystoreFileName }}'
       apksignerKeystorePassword: '${{ parameters.keystorePassword }}'
       apksignerKeystoreAlias: '${{ parameters.keyAlias }}'
       apksignerKeyPassword: '${{ parameters.keyPassword }}'
-      apksignerArguments: --out $(Build.SourcesDirectory)/$(projectName)/android/app/build/outputs/apk/$(buildConfiguration)/$(projectName)-$(buildConfiguration).apk --verbose
+      apksignerArguments: --out $(Build.SourcesDirectory)/android/app/build/outputs/apk/$(buildConfiguration)/$(buildConfiguration).apk --verbose
       zipalign: true
     displayName: 'Sign the APK'
 
   - task: CopyFiles@2
     inputs:
-      SourceFolder: '$(Build.SourcesDirectory)/$(projectName)/android/app/build/outputs/apk/$(buildConfiguration)'
-      contents: "**/$(projectName)-$(buildConfiguration).apk"
-      targetFolder: "$(Build.ArtifactStagingDirectory)/$(projectName)"
+      SourceFolder: '$(Build.SourcesDirectory)/android/app/build/outputs/apk/$(buildConfiguration)'
+      contents: "**/$(buildConfiguration).apk"
+      targetFolder: "$(Build.ArtifactStagingDirectory)"
     displayName: "Copy unsigned APK to staging directory"
 
   - task: PublishBuildArtifacts@1
     inputs:
-      PathtoPublish: "$(Build.ArtifactStagingDirectory)/$(projectName)"
-      ArtifactName: "$(projectName)"
+      PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+      ArtifactName: "new"
       publishLocation: "Container"
     displayName: "Publish artifacts"
