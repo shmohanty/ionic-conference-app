@@ -4,7 +4,7 @@ trigger:
 
 variables:
   vmImageName: 'windows-latest'
-  projectName: 'SampleApp'
+  projectName: 'ionic-conference-app'
 
 parameters:
   - name: keystoreFileName
