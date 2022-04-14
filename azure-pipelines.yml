@@ -16,7 +16,7 @@ jobs:
     - script: "npm i -g cordova\n"
     - script: "ionic cordova platform add android\n"
     - script: "ionic cordova plugin add cordova-plugin-androidx-adapter\n"
-    - script: "ionic cordova build android --no-confirm:yes --prod\n"
+    - script: "ionic cordova build android — release — prod — aot"
     - task: AndroidSigning@3
       inputs:
         apkFiles: '**/*.apk'
