@@ -6,18 +6,7 @@ variables:
   vmImageName: 'windows-latest'
   
 
-parameters:
-  - name: keystoreFileName
-    displayName: "The keystore file name for signing the apk"
-    type: string
-  - name: keystorePassword
-    displayName: "Password for the keystore"
-    type: string
-  - name: keyAlias
-    displayName: "Key alias"
-    type: string
-  - name: keyPassword
-    displayName: "Key password"
+
 
 steps:    
   - script: npm install -g @ionic/cli
