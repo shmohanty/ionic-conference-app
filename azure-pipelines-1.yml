@@ -41,10 +41,10 @@ steps:
     inputs:
       apkFiles: '$(Build.SourcesDirectory)/android/app/build/outputs/apk/$(buildConfiguration)/*.apk'
       apksign: true
-      apksignerKeystoreFile: '${{ parameters.keystoreFileName }}'
-      apksignerKeystorePassword: '${{ parameters.keystorePassword }}'
-      apksignerKeystoreAlias: '${{ parameters.keyAlias }}'
-      apksignerKeyPassword: '${{ parameters.keyPassword }}'
+      apksignerKeystoreFile: keystore-upload.jks
+      apksignerKeystorePassword: "Testimportant@443"
+      apksignerKeystoreAlias: 'keystore-upload'
+      apksignerKeyPassword: 'Testimportant@443'
       apksignerArguments: --out $(Build.SourcesDirectory)/android/app/build/outputs/apk/$(buildConfiguration)/$(buildConfiguration).apk --verbose
       zipalign: true
     displayName: 'Sign the APK'
