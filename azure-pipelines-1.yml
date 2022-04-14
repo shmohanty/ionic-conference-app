@@ -1,3 +1,11 @@
+
+trigger:
+- main
+
+variables:
+  vmImageName: 'windows-latest'
+  projectName: 'SampleApp'
+
 parameters:
   - name: keystoreFileName
     displayName: "The keystore file name for signing the apk"
