@@ -35,7 +35,7 @@ steps:
       apksignerKeystoreAlias: 'keystore-upload'
       apksignerKeyPassword: 'Bluebubbles@443'
       apksignerArguments: --out **/*.apk --verbose
-      zipalign: true
+      
     displayName: 'Sign the APK'
 
   - task: CopyFiles@2
