@@ -30,10 +30,10 @@ steps:
     inputs:
       apkFiles: '$(Build.SourcesDirectory)/**/*.apk'
       apksign: true
-      apksignerKeystoreFile: keystore-upload.jks
-      apksignerKeystorePassword: "Testimportant@443"
+      apksignerKeystoreFile: keystore-uploadnew.jks
+      apksignerKeystorePassword: "Bluebubbles@443"
       apksignerKeystoreAlias: 'keystore-upload'
-      apksignerKeyPassword: 'Testimportant@443'
+      apksignerKeyPassword: 'Bluebubbles@443'
       apksignerArguments: --out $(Build.SourcesDirectory)/**/*.apk --verbose
       zipalign: true
     displayName: 'Sign the APK'
