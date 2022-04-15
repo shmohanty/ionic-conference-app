@@ -22,26 +22,26 @@ steps:
       ionic cap build android --prod --no-open
       npx cap sync
       cd android
-      ./gradlew assemble$(buildConfiguration)
+      ./gradlew assembleRelease
     workingDirectory: $(Build.SourcesDirectory)
     displayName: 'Build Android Project'
 
   - task: AndroidSigning@3
     inputs:
-      apkFiles: '$(Build.SourcesDirectory)/android/app/build/outputs/apk/$(buildConfiguration)/*.apk'
+      apkFiles: '$(Build.SourcesDirectory)/android/app/build/outputs/apk/Release/*.apk'
       apksign: true
       apksignerKeystoreFile: keystore-upload.jks
       apksignerKeystorePassword: "Testimportant@443"
       apksignerKeystoreAlias: 'keystore-upload'
       apksignerKeyPassword: 'Testimportant@443'
-      apksignerArguments: --out $(Build.SourcesDirectory)/android/app/build/outputs/apk/$(buildConfiguration)/$(buildConfiguration).apk --verbose
+      apksignerArguments: --out $(Build.SourcesDirectory)/android/app/build/outputs/apk/$(buildConfiguration)/Release/*.apk --verbose
       zipalign: true
     displayName: 'Sign the APK'
 
   - task: CopyFiles@2
     inputs:
-      SourceFolder: '$(Build.SourcesDirectory)/android/app/build/outputs/apk/$(buildConfiguration)'
-      contents: "**/$(buildConfiguration).apk"
+      SourceFolder: '$(Build.SourcesDirectory)/android/app/build/outputs/apk/Release'
+      contents: "**/*.apk"
       targetFolder: "$(Build.ArtifactStagingDirectory)"
     displayName: "Copy unsigned APK to staging directory"
 
