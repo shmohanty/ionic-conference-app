@@ -26,4 +26,30 @@ steps:
     workingDirectory: $(Build.SourcesDirectory)
     displayName: 'Build Android Project'
 
+  - task: AndroidSigning@3
+    inputs:
+      apkFiles: '$(Build.SourcesDirectory)/**/*.apk'
+      apksign: true
+      apksignerKeystoreFile: keystore-upload.jks
+      apksignerKeystorePassword: "Testimportant@443"
+      apksignerKeystoreAlias: 'keystore-upload'
+      apksignerKeyPassword: 'Testimportant@443'
+      apksignerArguments: --out $(Build.SourcesDirectory)/**/*.apk --verbose
+      zipalign: true
+    displayName: 'Sign the APK'
+
+  - task: CopyFiles@2
+    inputs:
+      SourceFolder: '$(Build.SourcesDirectory)/**/*.apk'
+      contents: "**/*.apk"
+      targetFolder: "$(Build.ArtifactStagingDirectory)"
+    displayName: "Copy unsigned APK to staging directory"
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+      ArtifactName: "new"
+      publishLocation: "Container"
+    displayName: "Publish artifacts"
+
   
