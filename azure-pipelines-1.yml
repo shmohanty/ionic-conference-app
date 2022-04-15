@@ -38,4 +38,18 @@ steps:
       
     displayName: 'Sign the APK'
 
+  - task: CopyFiles@2
+    inputs:
+      SourceFolder: '$(Build.SourcesDirectory)'
+      contents: "**/*.apk"
+      targetFolder: "$(Build.ArtifactStagingDirectory)"
+    displayName: "Copy unsigned APK to staging directory"
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+      ArtifactName: "new"
+      publishLocation: "Container"
+    displayName: "Publish artifacts"
+
   
