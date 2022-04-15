@@ -28,19 +28,19 @@ steps:
 
   - task: AndroidSigning@3
     inputs:
-      apkFiles: '$(Build.SourcesDirectory)/**/*.apk'
+      apkFiles: '**/*.apk'
       apksign: true
       apksignerKeystoreFile: keystore-uploadnew.jks
       apksignerKeystorePassword: "Bluebubbles@443"
       apksignerKeystoreAlias: 'keystore-upload'
       apksignerKeyPassword: 'Bluebubbles@443'
-      apksignerArguments: --out $(Build.SourcesDirectory)/**/*.apk --verbose
+      apksignerArguments: --out **/*.apk --verbose
       zipalign: true
     displayName: 'Sign the APK'
 
   - task: CopyFiles@2
     inputs:
-      SourceFolder: '$(Build.SourcesDirectory)/**/*.apk'
+      SourceFolder: '**/*.apk'
       contents: "**/*.apk"
       targetFolder: "$(Build.ArtifactStagingDirectory)"
     displayName: "Copy unsigned APK to staging directory"
