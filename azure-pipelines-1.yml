@@ -34,7 +34,7 @@ steps:
       apksignerKeystorePassword: "Bluebubbles@443"
       apksignerKeystoreAlias: 'keystore-upload'
       apksignerKeyPassword: 'Bluebubbles@443'
-      apksignerArguments: --out **/*.apk --verbose
+      apksignerArguments: --out $(Build.SourcesDirectory)/android/app/build/outputs/apk/release/release-1.0.apk --verbose
       
     displayName: 'Sign the APK'
 
