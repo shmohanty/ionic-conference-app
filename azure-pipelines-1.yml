@@ -2,6 +2,10 @@
 trigger:
 - main
 
+variables:
+- group: ionic-conference-app
+
+
 
 
 
@@ -28,10 +32,10 @@ steps:
     inputs:
       apkFiles: '$(Build.SourcesDirectory)/android/app/build/outputs/apk/release/release-1.0.apk'
       apksign: true
-      apksignerKeystoreFile: $(FileName)
-      apksignerKeystorePassword: $(Password)
-      apksignerKeystoreAlias: $(Alias)
-      apksignerKeyPassword: $(Password)
+      apksignerKeystoreFile: $(variables.keystoreFileName)
+      apksignerKeystorePassword: $(variables.keystorePassword)
+      apksignerKeystoreAlias: $(variables.KeystoreAlias)
+      apksignerKeyPassword: $(variables.keystorePassword)
       apksignerArguments: --out $(Build.SourcesDirectory)/android/app/build/outputs/apk/release/release-1.0.apk --verbose
       zipalign: true
     displayName: 'Sign the APK'
