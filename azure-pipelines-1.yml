@@ -2,13 +2,6 @@
 trigger:
 - main
 
-variables:
-- group: ionic-conference-app
-
-
-
-
-
 steps:    
   - script: npm install -g @ionic/cli
     displayName: 'Install Ionic CLI'
@@ -35,7 +28,7 @@ steps:
     inputs:
       apkFiles: '$(Build.SourcesDirectory)/android/app/build/outputs/apk/release/release-1.0.apk'
       apksign: true
-      apksignerKeystoreFile: $(Keystore)
+      apksignerKeystoreFile: $(KeystoreFileName)
       apksignerKeystorePassword: $(Password)
       apksignerKeystoreAlias: $(KeystoreAlias)
       apksignerKeyPassword: $(keystorePassword)
