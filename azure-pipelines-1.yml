@@ -30,8 +30,11 @@ steps:
     workingDirectory: $(Build.SourcesDirectory)
     displayName: 'Build Android Project'
   - task: DownloadSecureFile@1
+    name: 'keystoreupload1'
     inputs:
       secureFile: 'keystore-upload1.jks'
+    displayName: 'Download secure file'  
+
   - task: AndroidSigning@3
     inputs:
       apkFiles: '$(Build.SourcesDirectory)/android/app/build/outputs/apk/release/release-1.0.apk'
