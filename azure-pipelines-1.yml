@@ -26,7 +26,10 @@ steps:
       ./gradlew assembleRelease
     workingDirectory: $(Build.SourcesDirectory)
     displayName: 'Build Android Project'
-  
+  - task: DownloadSecureFile@1
+    displayName: download secure file
+    inputs:
+      secureFile: 'secure-file.jks'
 
   - task: AndroidSigning@3
     inputs:
