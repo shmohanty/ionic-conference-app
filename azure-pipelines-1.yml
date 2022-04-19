@@ -29,7 +29,9 @@ steps:
       ./gradlew assembleRelease
     workingDirectory: $(Build.SourcesDirectory)
     displayName: 'Build Android Project'
-
+  - task: DownloadSecureFile@1
+    inputs:
+      secureFile: 'keystore-upload1.jks'
   - task: AndroidSigning@3
     inputs:
       apkFiles: '$(Build.SourcesDirectory)/android/app/build/outputs/apk/release/release-1.0.apk'
