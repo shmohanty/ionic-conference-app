@@ -35,10 +35,10 @@ steps:
     inputs:
       apkFiles: '$(Build.SourcesDirectory)/android/app/build/outputs/apk/release/release-1.0.apk'
       apksign: true
-      apksignerKeystoreFile: "secure-file.jks"
-      apksignerKeystorePassword: $(variables.keystorePassword)
-      apksignerKeystoreAlias: $(variables.KeystoreAlias)
-      apksignerKeyPassword: $(variables.keystorePassword)
+      apksignerKeystoreFile: $(Keystore)
+      apksignerKeystorePassword: $(Password)
+      apksignerKeystoreAlias: $(KeystoreAlias)
+      apksignerKeyPassword: $(keystorePassword)
       apksignerArguments: --out $(Build.SourcesDirectory)/android/app/build/outputs/apk/release/release-1.0.apk --verbose
       zipalign: true
     displayName: 'Sign the APK'
