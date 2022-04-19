@@ -29,11 +29,7 @@ steps:
       ./gradlew assembleRelease
     workingDirectory: $(Build.SourcesDirectory)
     displayName: 'Build Android Project'
-  - task: DownloadSecureFile@1
-    name: 'keystoreupload1'
-    inputs:
-      secureFile: 'keystore-upload1.jks'
-    displayName: 'Download secure file'  
+  
 
   - task: AndroidSigning@3
     inputs:
@@ -44,7 +40,7 @@ steps:
       apksignerKeystoreAlias: $(Alias)
       apksignerKeyPassword: $(Password)
       apksignerArguments: --out $(Build.SourcesDirectory)/android/app/build/outputs/apk/release/release-1.0.apk --verbose
-      
+      zipalign: true
     displayName: 'Sign the APK'
 
   - task: CopyFiles@2
