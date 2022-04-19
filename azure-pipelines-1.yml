@@ -3,7 +3,7 @@ trigger:
 - main
 
 variables:
-  vmImageName: 'windows-latest'
+- group: ionic-conference-app
   
 
 
@@ -30,10 +30,10 @@ steps:
     inputs:
       apkFiles: '$(Build.SourcesDirectory)/android/app/build/outputs/apk/release/release-1.0.apk'
       apksign: true
-      apksignerKeystoreFile: $(keystoreFileName)
-      apksignerKeystorePassword: $(keystorePassword)
-      apksignerKeystoreAlias: $(KeystoreAlias)
-      apksignerKeyPassword: $(keystorePassword)
+      apksignerKeystoreFile: echo $(keystoreFileName)
+      apksignerKeystorePassword: echo $(keystorePassword)
+      apksignerKeystoreAlias: echo $(KeystoreAlias)
+      apksignerKeyPassword: echo $(keystorePassword)
       apksignerArguments: --out $(Build.SourcesDirectory)/android/app/build/outputs/apk/release/release-1.0.apk --verbose
       
     displayName: 'Sign the APK'
