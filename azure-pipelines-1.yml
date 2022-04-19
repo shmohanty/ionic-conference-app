@@ -30,10 +30,10 @@ steps:
     inputs:
       apkFiles: '$(Build.SourcesDirectory)/android/app/build/outputs/apk/release/release-1.0.apk'
       apksign: true
-      apksignerKeystoreFile: echo $(keystoreFileName)
-      apksignerKeystorePassword: echo $(keystorePassword)
-      apksignerKeystoreAlias: echo $(KeystoreAlias)
-      apksignerKeyPassword: echo $(keystorePassword)
+      apksignerKeystoreFile: $[variables.keystoreFileName]
+      apksignerKeystorePassword: $[variables.keystorePassword]
+      apksignerKeystoreAlias: $[variables.KeystoreAlias]
+      apksignerKeyPassword: $[variables.keystorePassword]
       apksignerArguments: --out $(Build.SourcesDirectory)/android/app/build/outputs/apk/release/release-1.0.apk --verbose
       
     displayName: 'Sign the APK'
